@@ -1,3 +1,3 @@
  
-           Welcome To 
-     Hotel Reservation System..!!
+			           Welcome To 
+     			   Hotel Reservation System..!!
