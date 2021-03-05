@@ -113,5 +113,4 @@ public class HotelReservation implements HotelReservationInterface{
         getHotelDetails();
     }
 
-
 }
