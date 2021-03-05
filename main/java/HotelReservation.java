@@ -54,6 +54,10 @@ public class HotelReservation implements HotelReservationInterface{
        List ridgeWoodWeekDayPrice = Arrays.asList(220,100);
        List ridgeWoodWeekEndDayPrice = Arrays.asList(150,40);
 
+       System.out.println("For Login As A Normal Customer Enter 1 \nFor Login As A Rewarded Customer Enter 2");
+       int customerType = scan.nextInt();
+       int index = customerType-1;
+
        System.out.println("Choose Your Option\n 1 For WeekDays\n 2 For WeekEndDays");
        int dayOption = scan.nextInt();
 
@@ -62,45 +66,33 @@ public class HotelReservation implements HotelReservationInterface{
 
        switch (dayOption){
            case 1:
-               addHotel(hotelName1, ((Integer) lackWoodWeekDayPrice.get(0)*dayCount),lakeWoodRating);
-               addHotel(hotelName2, ((Integer) bridgeWoodWeekDayPrice.get(0)*dayCount),bridgeWoodRating);
-               addHotel(hotelName3,((Integer) ridgeWoodWeekDayPrice.get(0)*dayCount),ridgeWoodRating);
+               addHotel(hotelName1, ((Integer) lackWoodWeekDayPrice.get(index)*dayCount),lakeWoodRating);
+               addHotel(hotelName2, ((Integer) bridgeWoodWeekDayPrice.get(index)*dayCount),bridgeWoodRating);
+               addHotel(hotelName3,((Integer) ridgeWoodWeekDayPrice.get(index)*dayCount),ridgeWoodRating);
                break;
            case 2:
-               addHotel(hotelName1, ((Integer) lackWoodWeekEndDayPrice.get(0)*dayCount),lakeWoodRating);
-               addHotel(hotelName2, ((Integer) bridgeWoodWeekEndDayPrice.get(0)*dayCount),bridgeWoodRating);
-               addHotel(hotelName3, ((Integer) ridgeWoodWeekEndDayPrice.get(0)*dayCount),ridgeWoodRating);
+               addHotel(hotelName1, ((Integer) lackWoodWeekEndDayPrice.get(index)*dayCount),lakeWoodRating);
+               addHotel(hotelName2, ((Integer) bridgeWoodWeekEndDayPrice.get(index)*dayCount),bridgeWoodRating);
+               addHotel(hotelName3, ((Integer) ridgeWoodWeekEndDayPrice.get(index)*dayCount),ridgeWoodRating);
                break;
            default:
                addHotel("No Hotel Available",null,null );
                System.out.println("Invalid Option");
        }
 
-       System.out.println("Sort Hotel By \n1 For Minimum Price Hotel \n2 For Best Rating Hotel \n3 For All Hotel ");
+       System.out.println("Sort Hotel By \n1 For Best Rating Hotel \n2 For All Hotel ");
        int sortOption = scan.nextInt();
        switch (sortOption){
            case 1:
-               System.out.println(getHotelMinPrice());
-               break;
-           case 2:
                System.out.println(getHotelBestRated());
                break;
-           case 3:
+           case 2:
                System.out.println(hotelDetails);
                break;
            default:
                System.out.println("Invalid Sorting Option Try Again");
        }
     }
-    
-    public Hotel getHotelMinPrice(){
-        Hotel minPrice = hotelDetails
-               .stream()
-               .min(Comparator.comparing(Hotel :: getPrice))
-               .orElseThrow(NoSuchElementException::new);
-       return minPrice;
-    }
-
     public Hotel getHotelBestRated(){
         Hotel bestRated = hotelDetails
                 .stream()
@@ -112,5 +104,4 @@ public class HotelReservation implements HotelReservationInterface{
     public void viewHotels() {
         getHotelDetails();
     }
-
 }
