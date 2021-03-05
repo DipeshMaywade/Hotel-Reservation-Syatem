@@ -20,7 +20,7 @@ class Hotel{
     }
 
     public String toString(){
-        return "Hotel Name: "+hotelName +"\nHotel Price: "+hotelPrice+ "\nRating: " +hotelRating;
+        return "Hotel Name: "+hotelName +"\nHotel Price: "+hotelPrice+ "\nRating: " +hotelRating+"\n";
     }
 }
 
@@ -54,7 +54,7 @@ public class HotelReservation implements HotelReservationInterface{
        List ridgeWoodWeekDayPrice = Arrays.asList(220,100);
        List ridgeWoodWeekEndDayPrice = Arrays.asList(150,40);
 
-       System.out.println("For Login As A Normal Customer Enter 1 \nFor Login As A Rewarded Customer Enter 2");
+       System.out.println("For Login As A Normal Customer Enter 1\nFor Login As A Rewarded Customer Enter 2");
        int customerType = scan.nextInt();
        int index = customerType-1;
 
@@ -80,19 +80,31 @@ public class HotelReservation implements HotelReservationInterface{
                System.out.println("Invalid Option");
        }
 
-       System.out.println("Sort Hotel By \n1 For Best Rating Hotel \n2 For All Hotel ");
+       System.out.println("Sort Hotel By \n1 For Minimum Price Hotel \n2 For Best Rating Hotel \n3 For All Hotel ");
        int sortOption = scan.nextInt();
        switch (sortOption){
            case 1:
-               System.out.println(getHotelBestRated());
+               System.out.println(getHotelMinPrice());
                break;
            case 2:
+               System.out.println(getHotelBestRated());
+               break;
+           case 3:
                System.out.println(hotelDetails);
                break;
            default:
                System.out.println("Invalid Sorting Option Try Again");
        }
     }
+
+    public Hotel getHotelMinPrice(){
+        Hotel minPrice = hotelDetails
+               .stream()
+               .min(Comparator.comparing(Hotel :: getPrice))
+               .orElseThrow(NoSuchElementException::new);
+       return minPrice;
+    }
+
     public Hotel getHotelBestRated(){
         Hotel bestRated = hotelDetails
                 .stream()
