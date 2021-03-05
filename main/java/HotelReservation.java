@@ -18,7 +18,7 @@ class Hotel{
     }
 
     public String toString(){
-        return "Hotel Name: "+hotelName +"Hotel Price: "+hotelPrice;
+        return "Hotel Name: "+hotelName +"\nHotel Price: "+hotelPrice;
     }
 }
 
@@ -50,9 +50,25 @@ public class HotelReservation implements HotelReservationInterface{
 
        System.out.println("Enter Your DaysCount For Booking");
        int dayCount = scan.nextInt();
-       addHotel(hotelName1, ((Integer) lackWoodWeekDayPrice.get(0)*dayCount));
-       addHotel(hotelName2, ((Integer) bridgeWoodWeekDayPrice.get(0)*dayCount));
-       addHotel(hotelName3,((Integer) ridgeWoodWeekDayPrice.get(0)*dayCount));
+
+       System.out.println("Choose Your Option\n 1 For WeekDays\n 2 For WeekEndDays");
+       int dayOption = scan.nextInt();
+
+       switch (dayOption){
+           case 1:
+               addHotel(hotelName1, ((Integer) lackWoodWeekDayPrice.get(0)*dayCount));
+               addHotel(hotelName2, ((Integer) bridgeWoodWeekDayPrice.get(0)*dayCount));
+               addHotel(hotelName3,((Integer) ridgeWoodWeekDayPrice.get(0)*dayCount));
+               break;
+           case 2:
+               addHotel(hotelName1, ((Integer) lackWoodWeekEndDayPrice.get(0)*dayCount));
+               addHotel(hotelName2, ((Integer) bridgeWoodWeekEndDayPrice.get(0)*dayCount));
+               addHotel(hotelName3,((Integer) ridgeWoodWeekEndDayPrice.get(0)*dayCount));
+               break;
+           default:
+               addHotel("No Hotel Available", 00 );
+               System.out.println("Invalid Option");
+       }
 
        System.out.println(getHotelMinPrice());
 
