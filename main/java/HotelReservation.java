@@ -66,8 +66,7 @@ public class HotelReservation implements HotelReservationInterface{
                System.out.println("Invalid Option");
        }
 
-       System.out.println(hotelDetails);
-
+       System.out.println(getHotelMinPrice());
     }
     
     public Hotel getHotelMinPrice(){
