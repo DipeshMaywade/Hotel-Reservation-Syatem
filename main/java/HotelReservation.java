@@ -9,10 +9,6 @@ class Hotel{
         this.hotelPrice = hotelPrice;
     }
 
-    public String getName(){
-        return hotelName;
-    }
-
     public int getPrice(){
         return hotelPrice;
     }
@@ -63,14 +59,14 @@ public class HotelReservation implements HotelReservationInterface{
            case 2:
                addHotel(hotelName1, ((Integer) lackWoodWeekEndDayPrice.get(0)*dayCount));
                addHotel(hotelName2, ((Integer) bridgeWoodWeekEndDayPrice.get(0)*dayCount));
-               addHotel(hotelName3,((Integer) ridgeWoodWeekEndDayPrice.get(0)*dayCount));
+               addHotel(hotelName3, ((Integer) ridgeWoodWeekEndDayPrice.get(0)*dayCount));
                break;
            default:
                addHotel("No Hotel Available", 00 );
                System.out.println("Invalid Option");
        }
 
-       System.out.println(getHotelMinPrice());
+       System.out.println(hotelDetails);
 
     }
     
