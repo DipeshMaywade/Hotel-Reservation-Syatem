@@ -11,10 +11,6 @@ class Hotel{
         this.hotelRating = hotelRating;
     }
 
-    public int getPrice(){
-        return hotelPrice;
-    }
-
     public int getRating(){
         return hotelRating;
     }
