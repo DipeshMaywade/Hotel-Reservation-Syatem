@@ -6,10 +6,6 @@ public interface HotelReservationInterface {
 
     void getHotelDetails();
 
-    Hotel getHotelMinPrice();
-
-    Hotel getHotelBestRated();
-
     void viewHotels();
 
 }
