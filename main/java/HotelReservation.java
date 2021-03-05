@@ -15,6 +15,10 @@ class Hotel{
         return hotelRating;
     }
 
+    public int getPrice(){
+        return hotelRating;
+    }
+
     public String toString(){
         return "Hotel Name: "+hotelName +"\nHotel Price: "+hotelPrice+ "\nRating: " +hotelRating+"\n";
     }
