@@ -8,6 +8,8 @@ public interface HotelReservationInterface {
 
     Hotel getHotelMinPrice();
 
+    Hotel getHotelBestRated();
+
     void viewHotels();
 
 }

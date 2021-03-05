@@ -54,11 +54,11 @@ public class HotelReservation implements HotelReservationInterface{
        List ridgeWoodWeekDayPrice = Arrays.asList(220,100);
        List ridgeWoodWeekEndDayPrice = Arrays.asList(150,40);
 
-       System.out.println("Enter Your DaysCount For Booking");
-       int dayCount = scan.nextInt();
-
        System.out.println("Choose Your Option\n 1 For WeekDays\n 2 For WeekEndDays");
        int dayOption = scan.nextInt();
+
+       System.out.println("Enter Your DaysCount For Booking");
+       int dayCount = scan.nextInt();
 
        switch (dayOption){
            case 1:
@@ -76,7 +76,21 @@ public class HotelReservation implements HotelReservationInterface{
                System.out.println("Invalid Option");
        }
 
-       System.out.println(hotelDetails);
+       System.out.println("Sort Hotel By \n1 For Minimum Price Hotel \n2 For Best Rating Hotel \n3 For All Hotel ");
+       int sortOption = scan.nextInt();
+       switch (sortOption){
+           case 1:
+               System.out.println(getHotelMinPrice());
+               break;
+           case 2:
+               System.out.println(getHotelBestRated());
+               break;
+           case 3:
+               System.out.println(hotelDetails);
+               break;
+           default:
+               System.out.println("Invalid Sorting Option Try Again");
+       }
     }
     
     public Hotel getHotelMinPrice(){
@@ -87,7 +101,13 @@ public class HotelReservation implements HotelReservationInterface{
        return minPrice;
     }
 
-
+    public Hotel getHotelBestRated(){
+        Hotel bestRated = hotelDetails
+                .stream()
+                .max(Comparator.comparing(Hotel :: getRating))
+                .orElseThrow(NoSuchElementException::new);
+        return bestRated;
+    }
 
     public void viewHotels() {
         getHotelDetails();
