@@ -9,6 +9,14 @@ class Hotel{
         this.hotelPrice = hotelPrice;
     }
 
+    public String getName(){
+        return hotelName;
+    }
+
+    public int getPrice(){
+        return hotelPrice;
+    }
+
     public String toString(){
         return "Hotel Name: "+hotelName +"Hotel Price: "+hotelPrice;
     }
@@ -16,6 +24,7 @@ class Hotel{
 
 public class HotelReservation implements HotelReservationInterface{
 
+    Scanner scan = new Scanner(System.in);
     public ArrayList<Hotel> hotelDetails;
 
     public HotelReservation(){
@@ -32,17 +41,32 @@ public class HotelReservation implements HotelReservationInterface{
        String hotelName1 = "LakeWood";
        String hotelName2 = "BridgeWood";
        String hotelName3 = "RidgeWood";
-       Integer lackWoodPrice1 = 100;
-       Integer bridgeWoodPrice1 = 160;
-       Integer ridgeWoodPrice1 = 220;
+       List lackWoodWeekDayPrice = Arrays.asList(110,80);
+       List lackWoodWeekEndDayPrice = Arrays.asList(90,80);
+       List bridgeWoodWeekDayPrice = Arrays.asList(160,110);
+       List bridgeWoodWeekEndDayPrice = Arrays.asList(60,50);
+       List ridgeWoodWeekDayPrice = Arrays.asList(220,100);
+       List ridgeWoodWeekEndDayPrice = Arrays.asList(150,40);
 
-       addHotel(hotelName1,lackWoodPrice1);
-       addHotel(hotelName2, bridgeWoodPrice1);
-       addHotel(hotelName3,ridgeWoodPrice1);
-   }
+       System.out.println("Enter Your DaysCount For Booking");
+       int dayCount = scan.nextInt();
+       addHotel(hotelName1, ((Integer) lackWoodWeekDayPrice.get(0)*dayCount));
+       addHotel(hotelName2, ((Integer) bridgeWoodWeekDayPrice.get(0)*dayCount));
+       addHotel(hotelName3,((Integer) ridgeWoodWeekDayPrice.get(0)*dayCount));
 
-   public void viewHotels(){
-       getHotelDetails();
-       System.out.println(hotelDetails);
+       System.out.println(getHotelMinPrice());
+
+    }
+    
+    public Hotel getHotelMinPrice(){
+        Hotel minPrice = hotelDetails
+               .stream()
+               .min(Comparator.comparing(Hotel :: getPrice))
+               .orElseThrow(NoSuchElementException::new);
+       return minPrice;
+    }
+
+    public void viewHotels() {
+        getHotelDetails();
     }
 }
